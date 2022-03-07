@@ -29,16 +29,16 @@ class HumanGender extends React.Component {
 
   async getHumanInfo(event) {
     event.preventDefault()
-    
+
     const firstName = this.state.name
-    
+
     if (firstName.length <= 2) {
-      this.setState({gender: 'Введите больше двух символов'})
+      this.setState({ gender: 'Введите больше двух символов' })
     } else {
       const response = await fetch(`${API.SERVER_URL}${API.URL}${firstName}`)
       const humanInfo = await response.json()
-      
-      this.setState({gender: humanInfo.gender})
+
+      this.setState({ gender: humanInfo.gender })
     }
   }
 
@@ -52,10 +52,10 @@ class Input extends React.Component {
     super(props)
     this.state = { name: '' }
 
-    this.getName = this.getName.bind(this);
+    this.setNewName = this.setNewName.bind(this);
   }
 
-  getName(e) {
+  setNewName(e) {
     this.setState({ name: e.target.value })
 
     this.props.setName(e.target.value)
@@ -63,7 +63,7 @@ class Input extends React.Component {
 
   render() {
     return (
-      <input type="text" onChange={this.getName}></input>
+      <input type="text" onChange={this.setNewName}></input>
     )
   }
 }
